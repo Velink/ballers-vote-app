@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+html{
+    height: auto;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    min-height: 1000px;
+    background-image: url(/public/assets/1594862.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+}
+
+/* LANDING PAGE STYLING */ 
+
+#main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing-page-title{
+    margin: 0px auto;
+    margin-top: 50px;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 36px;
+}
+
+.gates-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 35%;
+}
+
+.gates-title{
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.rating-button-container{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.styled-button{
+    border: none;
+    background-color: black;
+    color: #fff;
+    padding: 12px 24px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+}
+
+.styled-button:hover{
+    cursor: pointer;
+    background-color: #0FFF50;
+    color: black;
+    /* background-image: linear-gradient(to bottom right, #06166E, #E91BF9); */
+}
+
+.styled-input{
+    border: none;
+    height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+.styled-input:focus{
+    zoom: 1.1;
+}
+
+
+/* TABLE CONTAINER */
+
+#table-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* WEEKLY RATINGS TABLE ON HOME PAGE */
+
+#weekly-ratings-table{
+    display: none;
+    margin: 20px auto;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+}
+
+#weekly-ratings-table tbody{
+    width: 55%;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+#weekly-ratings-table tr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#weekly-ratings-table th:nth-of-type(1){
+    justify-self: left;
+}
+
+#weekly-ratings-table td{
+    padding-top: 10px;
+}
+
+.weekly-ratings-table-title{
+    display: none;
+    margin-top: 5%;
+    text-transform: uppercase;
+}
+
+.show{
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+/* OVERALL RATINGS TABLE ON HOME PAGE */ 
+
+.overall-ratings-table-title{
+    color: #fff;
+    display: none;
+    margin-top: 50px;
+    text-transform: uppercase;
+}
+
+#overall-ratings-table{
+    display: none;
+    margin: 20px auto;
+    color: #fff;
+    width: 100%;
+}
+
+#overall-ratings-table tbody{
+    width: 55%;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+#overall-ratings-table th{
+    margin-bottom: 5px;
+}
+
+#overall-ratings-table th:nth-of-type(1){
+    margin-right: 48%;
+}
+
+#overall-ratings-table th:nth-of-type(2){
+    margin-right: 20px;
+}
+
+#overall-ratings-table tr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin-top: 5px;
+}
+
+#overall-ratings-table tr td:nth-of-type(1){
+    width: 65%;
+}
+
+
+/* RATING INPUTS & LABELS */
+
+#rating-inputs-title{
+    color: #fff;
+    padding-top: 40px;
+    margin-bottom: 30px;
+    font-size: 26px;
+    width: 90%;
+}
+
+.rating-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.rating-label{
+    font-size: 24px;
+    margin-right: 5%;
+    color: #fff;
+    width: 30%;
+    padding-top: 5px;
+    white-space: nowrap;
+}
+
+.rating-input{
+    width: 5%;
+    min-width: 35px;
+    margin-top: 10px;
+    outline: none;
+    border: none;
+}
+
+.rating-input:focus{
+    background-color: #0FFF50;
+}
+
+
+/* THANK YOU PAGE */ 
+
+.thanks-title{
+    color: #fff;
+    margin-bottom: 20px;
+    padding-top: 100px;
+}
+
+.styled-button{
+    text-decoration: none;
+}
+
+@media(max-width: 420px){
+    .landing-page-title{
+        margin-top: 25px;
+        font-size: 24px;
+    }
+
+    .thanks-title{
+        font-size: 20px;
+        width: 70%;
+        text-align: center;
+    }
+
+    .gates-container{
+        display: flex;
+        flex-direction: column;
+        margin: 20px auto;
+        width: 55%;
+    }
+}
