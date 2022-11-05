@@ -46,7 +46,8 @@ body {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 35%;
+    width: 45%;
+    max-width: 600px;
 }
 
 .gates-title{
@@ -62,7 +63,8 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 20px auto;
-    width: 100%;
+    width: 45%;
+    max-width: 600px;
 }
 
 .styled-button{
@@ -102,6 +104,8 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+    max-width: 1000px;
 }
 
 /* WEEKLY RATINGS TABLE ON HOME PAGE */
@@ -247,7 +251,7 @@ body {
     text-decoration: none;
 }
 
-@media(max-width: 420px){
+@media(max-width: 650px){
     .landing-page-title{
         margin-top: 25px;
         font-size: 24px;
@@ -263,6 +267,17 @@ body {
         display: flex;
         flex-direction: column;
         margin: 20px auto;
-        width: 55%;
+        width: 80%;
+    }
+
+    .rating-button-container{
+        width: 80%;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .rating-button-container > .styled-button{
+        font-size: 12px;
+        padding: 12px 8px;
     }
 }
