@@ -6,7 +6,7 @@ async function loginUser(event){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const result = await fetch('http://localhost:3000/api/login', {
+    const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -99,7 +99,7 @@ function generateAdminDashboard(){
         }
 
         // generateLobbyPage();
-        const response = await fetch('http://localhost:3000/api/create', options)
+        const response = await fetch('https://ballers-vote-app-server.herokuapp.com/api/create', options)
         .then((res) => res.json())
         if(response.status === 'ok'){
             alert('success!')

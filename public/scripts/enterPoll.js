@@ -7,7 +7,7 @@ submitButton.addEventListener('click', async () => {
     if(enteredPassword == null || enteredPassword == undefined){
         alert('please enter a password!')
     } else {
-        const result = await fetch('http://localhost:3000/api/entry', {
+        const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/entry', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,7 +106,7 @@ function beginPoll(rows){
                 // This condition here is to make sure that we are on the last input before creating the next page, this means all input values would have been checked
                 if(x == ratingObjectArray.length -1){
                     console.log('this RAN');
-                    const result = await fetch(`http://localhost:3000/api/rate/${passwordHash}`, {
+                    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/rate/${passwordHash}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -165,7 +165,7 @@ function generateThankYouPage(passwordHash){
         weeklyRatingsTable.classList.add('show');
         weeklyRatingsTable.innerHTML = '';
 
-        const result = await fetch(`http://localhost:3000/api/weekly/${password}`, {
+        const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/weekly/${password}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -234,7 +234,7 @@ function generateThankYouPage(passwordHash){
     const homeButton = document.createElement('a');
     homeButton.textContent = "Home";
     homeButton.setAttribute('class', 'styled-button')
-    homeButton.setAttribute('href', 'http://localhost:5500/public/')
+    homeButton.setAttribute('href', 'https://ballers-vote-app-server.herokuapp.com/public/')
 
     main.appendChild(seeWeekButton);
     main.appendChild(seeOverallButton);
@@ -260,7 +260,7 @@ weeklyRatingButton.addEventListener('click', async () => {
     weeklyRatingsTable.innerHTML = '';
 
 
-    const result = await fetch(`http://localhost:3000/api/home/weekly`, {
+    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/home/weekly`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
@@ -336,7 +336,7 @@ async function generateLeaderboard(){
     overallRatingsTable.innerHTML = '';
 
     // Fetch Overall ratings 
-    const result = await fetch(`http://localhost:3000/api/leaderboard`, {
+    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/leaderboard`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'

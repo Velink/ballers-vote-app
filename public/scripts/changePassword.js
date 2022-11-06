@@ -5,7 +5,7 @@ async function loginUser(event){
     event.preventDefault();
     const password = document.getElementById('password').value;
 
-    const result = await fetch('http://localhost:3000/api/change-password', {
+    const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/change-password', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
