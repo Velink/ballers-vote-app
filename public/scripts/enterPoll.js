@@ -234,7 +234,7 @@ function generateThankYouPage(passwordHash){
     const homeButton = document.createElement('a');
     homeButton.textContent = "Home";
     homeButton.setAttribute('class', 'styled-button')
-    homeButton.setAttribute('href', 'https://ballers-vote-app-server.herokuapp.com')
+    homeButton.setAttribute('href', 'https://ballers-edmonton.netlify.app/')
 
     main.appendChild(seeWeekButton);
     main.appendChild(seeOverallButton);
