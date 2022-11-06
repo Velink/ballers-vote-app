@@ -19,6 +19,7 @@ async function loginUser(event){
 
     if(result.status === 'ok'){
         localStorage.setItem('token', result.data)
+        console.log(result.data)
         generateAdminDashboard();
     
     } else {
