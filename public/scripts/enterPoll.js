@@ -356,23 +356,28 @@ async function generateLeaderboard(){
                         <th>MP</th>
                     </tr>`;
 
-        let orderedOverallRatingArray = [];
-        for (let k = 0; k < overallRatingArray.length; k++) {
-            try {
-                console.log('hello WORLD', overallRatingArray[k].overall_rating)
-                orderedOverallRatingArray[k] = parseFloat(overallRatingArray[k].overall_rating)
-                console.log('what HERE', orderedOverallRatingArray[k])   
-            } catch (error) {
-                console.log('ERROR', error)
-            }
-        }
+        // Sort in descending order straight away using the overall_rating value in the player object 
+        overallRatingArray.sort((a, b) => b.overall_rating.localeCompare(a.overall_rating));
+        console.log('NEW METHOD', overallRatingArray);
 
-        console.log('overall ORDERED', orderedOverallRatingArray);
-        orderedOverallRatingArray.sort(function(a, b) {return b-a});
+        // let orderedOverallRatingArray = [];
+        // for (let k = 0; k < overallRatingArray.length; k++) {
+        //     try {
+        //         console.log('hello WORLD', overallRatingArray[k].overall_rating)
+        //         orderedOverallRatingArray[k] = parseFloat(overallRatingArray[k].overall_rating)
+        //         console.log('what HERE', orderedOverallRatingArray[k])   
+        //     } catch (error) {
+        //         console.log('ERROR', error)
+        //     }
+        // }
+
+        // console.log('BEFORE ORDERED', orderedOverallRatingArray)
+        // orderedOverallRatingArray.sort(function(a, b) {return b-a});
+        // console.log('overall ORDERED', orderedOverallRatingArray);
 
         for (let i = 0; i < overallRatingArray.length; i++) {
             const displayName = overallRatingArray[i].name;
-            const displayRating = orderedOverallRatingArray[i]
+            const displayRating = overallRatingArray[i].overall_rating;
             const displayMatchesPlayed = overallRatingArray[i].matches_played
 
             console.log('display name: ', displayName);

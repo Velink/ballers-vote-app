@@ -71,14 +71,34 @@ function generateAdminDashboard(){
     playerList.setAttribute('type', '1');
     body.appendChild(playerList);
 
+    const playerTextArea = document.createElement('textarea');
+    playerTextArea.setAttribute('id', 'player-lines')
+    playerTextArea.setAttribute('rows', '50');
+    playerTextArea.setAttribute('cols', '50');
+    body.appendChild(playerTextArea);
+
+    let textareaPlayerArray = [];
+
+    const textAreaButton = document.createElement('button');
+    textAreaButton.textContent = 'Get players from textarea'
+    body.appendChild(textAreaButton);
+    textAreaButton.addEventListener('click', () => {
+        textareaPlayerArray = playerTextArea.value.split('\n');
+        for (let m = 0; m < textareaPlayerArray.length; m++) {
+                textareaPlayerArray[m] = textareaPlayerArray[m].trim().toUpperCase();
+        }
+        console.log('FROM TEXT AREA', textareaPlayerArray); 
+    })
+
     let playerArray = [];
 
     addButton.addEventListener('click', () => {
-        playerArray.push(inputPlayer.value);
+        playerArray.push(inputPlayer.value.trim().toUpperCase());
         console.log(playerArray);
         console.log(inputPlayer.value);
+        console.log('TRIMMED', inputPlayer.value)
         let newItem = document.createElement('li');
-        newItem.textContent = inputPlayer.value;
+        newItem.textContent = inputPlayer.value.trim();
         playerList.appendChild(newItem);
     })
 
@@ -89,10 +109,11 @@ function generateAdminDashboard(){
     createButton.addEventListener('click', async () => {
         let passwordPack = inputPassword.value;
         console.log(passwordPack)
-        console.log(playerArray);
+        console.log('how can THIS BE HERE' ,  playerArray);
+        console.log('TEXT AREA PLAYER ARRAY', textareaPlayerArray)
         const options = {
             method: 'POST',
-            body: JSON.stringify({array: playerArray, password: passwordPack}),
+            body: JSON.stringify({array: textareaPlayerArray, password: passwordPack}),
             headers: {
                 "Content-Type" : "application/json",
             },

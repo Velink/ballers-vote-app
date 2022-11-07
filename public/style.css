@@ -136,6 +136,7 @@ body {
 
 #weekly-ratings-table td{
     padding-top: 10px;
+    white-space: nowrap;
 }
 
 .weekly-ratings-table-title{
