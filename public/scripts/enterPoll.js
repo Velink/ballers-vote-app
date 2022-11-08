@@ -180,37 +180,40 @@ function generateThankYouPage(passwordHash){
                             <th>Name</th>
                             <th>Rating</th>
                        </tr>`;
-            let weeklyOrderedRatingArray = [];
-            for (let k = 0; k < weeklyRatingArray.length; k++) {
-                const displayRating = weeklyRatingArray[k].row.slice(
-                    weeklyRatingArray[k].row.indexOf(',') + 1,
-                    weeklyRatingArray[k].row.lastIndexOf(')'),
-                  );
-    
-                  weeklyOrderedRatingArray[k] = parseFloat(displayRating);
-                  console.log(weeklyOrderedRatingArray[k]);    
-            }
-            console.log('ordered ARRAY', weeklyOrderedRatingArray);
-            weeklyOrderedRatingArray.sort(function(a, b) {return b-a});
-            console.log('ordered ARRAY INCREASING', weeklyOrderedRatingArray);
-    
-            for (let i = 0; i < weeklyRatingArray.length; i++) {
-                const displayName = weeklyRatingArray[i].row.slice(
-                    weeklyRatingArray[i].row.indexOf('"') + 1,
-                    weeklyRatingArray[i].row.lastIndexOf('"'),
-                  );
-    
-                const displayOrderedRating = weeklyOrderedRatingArray[i];
-            
-                console.log('display name: ', displayName);
-                console.log('display rating:', displayOrderedRating);
-                str = str  + `
-                                <tr>
-                                    <td>${displayName}</td>
-                                    <td>${displayOrderedRating}</td>
-                                </tr>
-                             `
-            }
+                       let weeklyOrderedRatingArray = [];
+                       for (let k = 0; k < weeklyRatingArray.length; k++) {
+                           const displayRating = weeklyRatingArray[k].row.slice(
+                               weeklyRatingArray[k].row.indexOf(',') + 1,
+                               weeklyRatingArray[k].row.lastIndexOf(')'),
+                             );
+                           
+                           const displayName = weeklyRatingArray[k].row.slice(
+                               weeklyRatingArray[k].row.indexOf('"') + 1,
+                               weeklyRatingArray[k].row.lastIndexOf('"'),
+                           );
+               
+                             weeklyOrderedRatingArray[k] = { name: displayName, rating: parseFloat(displayRating)};
+                             console.log(weeklyOrderedRatingArray[k]);    
+                       }
+                       // console.log('ordered ARRAY', weeklyOrderedRatingArray);
+                       // weeklyOrderedRatingArray.sort(function(a, b) {return b-a});
+                       // console.log('ordered ARRAY INCREASING', weeklyOrderedRatingArray);
+                       weeklyOrderedRatingArray.sort(function(a, b){
+                           return b.rating - a.rating;
+                       });
+                       console.log('ORDERED ???', weeklyOrderedRatingArray)
+                       for (let i = 0; i < weeklyRatingArray.length; i++) {
+                           // const displayOrderedRating = weeklyOrderedRatingArray[i];
+                           // console.log('IS THIS WHAT I WANT', weeklyOrderedRatingArray);    
+                           console.log('display name: ', weeklyOrderedRatingArray[i].name);
+                           console.log('display rating:', weeklyOrderedRatingArray[i].rating);
+                           str = str  + `
+                                           <tr>
+                                               <td>${weeklyOrderedRatingArray[i].name}</td>
+                                               <td>${weeklyOrderedRatingArray[i].rating}</td>
+                                           </tr>
+                                        `
+                       }
             table.insertAdjacentHTML('beforeend', str);
         } else {
             alert('There was an error with the server!')
@@ -281,28 +284,31 @@ weeklyRatingButton.addEventListener('click', async () => {
                 weeklyRatingArray[k].row.indexOf(',') + 1,
                 weeklyRatingArray[k].row.lastIndexOf(')'),
               );
+            
+            const displayName = weeklyRatingArray[k].row.slice(
+                weeklyRatingArray[k].row.indexOf('"') + 1,
+                weeklyRatingArray[k].row.lastIndexOf('"'),
+            );
 
-              weeklyOrderedRatingArray[k] = parseFloat(displayRating);
+              weeklyOrderedRatingArray[k] = { name: displayName, rating: parseFloat(displayRating)};
               console.log(weeklyOrderedRatingArray[k]);    
         }
-        console.log('ordered ARRAY', weeklyOrderedRatingArray);
-        weeklyOrderedRatingArray.sort(function(a, b) {return b-a});
-        console.log('ordered ARRAY INCREASING', weeklyOrderedRatingArray);
-
+        // console.log('ordered ARRAY', weeklyOrderedRatingArray);
+        // weeklyOrderedRatingArray.sort(function(a, b) {return b-a});
+        // console.log('ordered ARRAY INCREASING', weeklyOrderedRatingArray);
+        weeklyOrderedRatingArray.sort(function(a, b){
+            return b.rating - a.rating;
+        });
+        console.log('ORDERED ???', weeklyOrderedRatingArray)
         for (let i = 0; i < weeklyRatingArray.length; i++) {
-            const displayName = weeklyRatingArray[i].row.slice(
-                weeklyRatingArray[i].row.indexOf('"') + 1,
-                weeklyRatingArray[i].row.lastIndexOf('"'),
-              );
-
-            const displayOrderedRating = weeklyOrderedRatingArray[i];
-        
-            console.log('display name: ', displayName);
-            console.log('display rating:', displayOrderedRating);
+            // const displayOrderedRating = weeklyOrderedRatingArray[i];
+            // console.log('IS THIS WHAT I WANT', weeklyOrderedRatingArray);    
+            console.log('display name: ', weeklyOrderedRatingArray[i].name);
+            console.log('display rating:', weeklyOrderedRatingArray[i].rating);
             str = str  + `
                             <tr>
-                                <td>${displayName}</td>
-                                <td>${displayOrderedRating}</td>
+                                <td>${weeklyOrderedRatingArray[i].name}</td>
+                                <td>${weeklyOrderedRatingArray[i].rating}</td>
                             </tr>
                          `
         }
@@ -356,8 +362,10 @@ async function generateLeaderboard(){
                         <th>MP</th>
                     </tr>`;
 
-        // Sort in descending order straight away using the overall_rating value in the player object 
-        overallRatingArray.sort((a, b) => b.overall_rating.localeCompare(a.overall_rating));
+        // Sort in descending order straight away using the overall_rating value in the player object
+        overallRatingArray.sort(function(a, b){
+            return b.overall_rating - a.overall_rating;
+        });
         console.log('NEW METHOD', overallRatingArray);
 
         // let orderedOverallRatingArray = [];
