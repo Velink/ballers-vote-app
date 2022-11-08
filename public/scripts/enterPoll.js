@@ -165,6 +165,11 @@ function generateThankYouPage(passwordHash){
         weeklyRatingsTable.classList.add('show');
         weeklyRatingsTable.innerHTML = '';
 
+        // Show number of people who voted
+        let voteNumber = document.createElement('p');
+        voteNumber.textContent = 'No. of Votes:';
+        voteNumber.setAttribute('id', 'vote-number');
+
         const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/weekly/${password}`, {
             method: 'GET',
             headers: {
@@ -173,8 +178,9 @@ function generateThankYouPage(passwordHash){
         }).then((res) => res.json())
         if(result.status === 'ok'){
             // generateLeaderboard(result);
-            let weeklyRatingArray = result.result.rows;
-            console.log(weeklyRatingArray);
+            let weeklyRatingArray = result.result;
+            console.log('RESULT', result)
+            console.log('what we breaking', weeklyRatingArray);
             let table = document.getElementById('weekly-ratings-table');
             let str = `<tr>
                             <th>Name</th>
@@ -214,6 +220,8 @@ function generateThankYouPage(passwordHash){
                                            </tr>
                                         `
                        }
+            voteNumber.textContent = `No. of Votes: ${result.votes}`
+            table.appendChild(voteNumber);
             table.insertAdjacentHTML('beforeend', str);
         } else {
             alert('There was an error with the server!')
