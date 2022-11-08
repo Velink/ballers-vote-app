@@ -255,6 +255,11 @@ weeklyRatingButton.addEventListener('click', async () => {
     overallRatingsTable.classList.remove('show');
     overallRatingsTable.innerHTML = '';
 
+    // Show number of people who voted
+    let voteNumber = document.createElement('p');
+    voteNumber.textContent = 'No. of Votes:';
+    voteNumber.setAttribute('id', 'vote-number');
+
     // Show weekly table 
     let weeklyRatingsTitle = document.getElementsByClassName('weekly-ratings-table-title')[0];
     weeklyRatingsTitle.classList.add('show');
@@ -274,6 +279,7 @@ weeklyRatingButton.addEventListener('click', async () => {
         console.log(result.result);           
         let weeklyRatingArray = result.result;
         let table = document.getElementById('weekly-ratings-table');
+        table.appendChild(voteNumber);
         let str = `<tr>
                         <th>Name</th>
                         <th>Rating</th>
@@ -312,6 +318,7 @@ weeklyRatingButton.addEventListener('click', async () => {
                             </tr>
                          `
         }
+        voteNumber.textContent = `No. of Votes: ${result.votes}`;
         table.insertAdjacentHTML('beforeend', str);
     } else {
         alert('There was an error with the server!')

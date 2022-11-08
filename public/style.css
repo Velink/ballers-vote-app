@@ -252,6 +252,11 @@ body {
     text-decoration: none;
 }
 
+#vote-number{
+    color: #0FFF50;
+    font-weight: bold;
+}
+
 @media(max-width: 650px){
     .landing-page-title{
         margin-top: 25px;
@@ -280,5 +285,13 @@ body {
     .rating-button-container > .styled-button{
         font-size: 12px;
         padding: 12px 8px;
+    }
+
+    #overall-ratings-table tbody{
+        width: 80%;
+    }
+
+    #overall-ratings-table th:nth-last-of-type(2){
+        margin-right: 0;
     }
 }
