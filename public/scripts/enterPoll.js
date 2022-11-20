@@ -373,8 +373,11 @@ async function generateLeaderboard(){
         let table = document.getElementById('overall-ratings-table');
         let str = ` <tr>
                         <th>Name</th>
-                        <th>Rating</th>
                         <th>MP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>Rating</th>
                     </tr>`;
 
         // Sort in descending order straight away using the overall_rating value in the player object
@@ -402,14 +405,20 @@ async function generateLeaderboard(){
             const displayName = overallRatingArray[i].name;
             const displayRating = overallRatingArray[i].overall_rating;
             const displayMatchesPlayed = overallRatingArray[i].matches_played
+            const displayWins = overallRatingArray[i].wins;
+            const displayLosses = overallRatingArray[i].losses;
+            const displayDraws = overallRatingArray[i].draws;
 
             console.log('display name: ', displayName);
             console.log('display all time rating:', displayRating);
             str = str  + `
                             <tr>
                                 <td>${displayName}</td>
-                                <td>${displayRating}</td>
                                 <td>${displayMatchesPlayed}</td>
+                                <td>${displayWins}</td>
+                                <td>${displayDraws}</td>
+                                <td>${displayLosses}</td>
+                                <td>${displayRating}</td>
                             </tr>
                          `
         }
