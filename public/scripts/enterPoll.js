@@ -377,7 +377,7 @@ async function generateLeaderboard(){
                         <th>W</th>
                         <th>D</th>
                         <th>L</th>
-                        <th>Rating</th>
+                        <th>/10</th>
                     </tr>`;
 
         // Sort in descending order straight away using the overall_rating value in the player object
