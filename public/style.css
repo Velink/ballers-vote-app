@@ -312,6 +312,13 @@ body {
 #vote-number{
     color: #0FFF50;
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+#motm {
+    color: aquamarine;
+    font-weight: bolder;
+    margin-bottom: 3px;
 }
 
 @media(max-width: 650px){
