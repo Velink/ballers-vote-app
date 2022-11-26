@@ -344,6 +344,20 @@ weeklyRatingButton.addEventListener('click', async () => {
 let overallRatingButton = document.getElementById('overall-button');
 overallRatingButton.addEventListener('click', async () => {
     generateLeaderboard();
+});
+
+// ORDER BY WINS 
+let orderWinsButton = document.getElementById('order-wins');
+orderWinsButton.addEventListener('click', () => {
+    console.log('AY')
+    generateWinsLeaderboard();
+})
+
+// ORDER BY DEFEATS 
+let orderLossesButton = document.getElementById('order-losses');
+orderLossesButton.addEventListener('click', () => {
+    console.log('AY')
+    generateLossesLeaderboard();
 })
 
 // GEBERATE LEADERBOARD FUNCTION 
@@ -407,6 +421,154 @@ async function generateLeaderboard(){
         // console.log('BEFORE ORDERED', orderedOverallRatingArray)
         // orderedOverallRatingArray.sort(function(a, b) {return b-a});
         // console.log('overall ORDERED', orderedOverallRatingArray);
+
+        for (let i = 0; i < overallRatingArray.length; i++) {
+            const displayName = overallRatingArray[i].name;
+            const displayRating = overallRatingArray[i].overall_rating;
+            const displayMatchesPlayed = overallRatingArray[i].matches_played
+            const displayWins = overallRatingArray[i].wins;
+            const displayLosses = overallRatingArray[i].losses;
+            const displayDraws = overallRatingArray[i].draws;
+
+            console.log('display name: ', displayName);
+            console.log('display all time rating:', displayRating);
+            str = str  + `
+                            <tr>
+                                <td>${displayName}</td>
+                                <td>${displayMatchesPlayed}</td>
+                                <td>${displayWins}</td>
+                                <td>${displayDraws}</td>
+                                <td>${displayLosses}</td>
+                                <td>${displayRating}</td>
+                            </tr>
+                         `
+        }
+        table.insertAdjacentHTML('beforeend', str);
+    } else {
+        alert('There was an error with the server!')
+    }
+}
+
+// GEBERATE LEADERBOARD BY WINS FUNCTION 
+async function generateWinsLeaderboard(){
+
+    // Remove weekly table from view
+    let weeklyRatingsTitle = document.getElementsByClassName('weekly-ratings-table-title')[0];
+    weeklyRatingsTitle.classList.remove('show');
+    let weeklyRatingsTable = document.getElementById('weekly-ratings-table');
+    weeklyRatingsTable.classList.remove('show');
+    weeklyRatingsTable.innerHTML = '';
+
+    // Show overall Table 
+    let overallRatingsTitle = document.getElementsByClassName('overall-ratings-table-title')[0];
+    overallRatingsTitle.classList.add('show');
+    let overallRatingsTable = document.getElementById('overall-ratings-table');
+    overallRatingsTable.classList.add('show');
+    overallRatingsTable.innerHTML = '';
+
+    // Fetch Overall ratings 
+    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/leaderboard`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then((res) => res.json())
+    if(result.status === 'ok'){
+        // generateLeaderboard(result);
+        console.log('WTF')
+        console.log(result);
+        console.log(result.array);            
+    
+        let overallRatingArray = result.array;
+        let table = document.getElementById('overall-ratings-table');
+        let str = ` <tr>
+                        <th>Name</th>
+                        <th>MP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>/10</th>
+                    </tr>`;
+
+        // Sort in descending order straight away using the overall_rating value in the player object
+        overallRatingArray.sort(function(a, b){
+            return b.wins - a.wins;
+        });
+        console.log('NEW METHOD', overallRatingArray);
+
+        for (let i = 0; i < overallRatingArray.length; i++) {
+            const displayName = overallRatingArray[i].name;
+            const displayRating = overallRatingArray[i].overall_rating;
+            const displayMatchesPlayed = overallRatingArray[i].matches_played
+            const displayWins = overallRatingArray[i].wins;
+            const displayLosses = overallRatingArray[i].losses;
+            const displayDraws = overallRatingArray[i].draws;
+
+            console.log('display name: ', displayName);
+            console.log('display all time rating:', displayRating);
+            str = str  + `
+                            <tr>
+                                <td>${displayName}</td>
+                                <td>${displayMatchesPlayed}</td>
+                                <td>${displayWins}</td>
+                                <td>${displayDraws}</td>
+                                <td>${displayLosses}</td>
+                                <td>${displayRating}</td>
+                            </tr>
+                         `
+        }
+        table.insertAdjacentHTML('beforeend', str);
+    } else {
+        alert('There was an error with the server!')
+    }
+}
+
+// GEBERATE LEADERBOARD BY WINS FUNCTION 
+async function generateLossesLeaderboard(){
+
+    // Remove weekly table from view
+    let weeklyRatingsTitle = document.getElementsByClassName('weekly-ratings-table-title')[0];
+    weeklyRatingsTitle.classList.remove('show');
+    let weeklyRatingsTable = document.getElementById('weekly-ratings-table');
+    weeklyRatingsTable.classList.remove('show');
+    weeklyRatingsTable.innerHTML = '';
+
+    // Show overall Table 
+    let overallRatingsTitle = document.getElementsByClassName('overall-ratings-table-title')[0];
+    overallRatingsTitle.classList.add('show');
+    let overallRatingsTable = document.getElementById('overall-ratings-table');
+    overallRatingsTable.classList.add('show');
+    overallRatingsTable.innerHTML = '';
+
+    // Fetch Overall ratings 
+    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/leaderboard`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then((res) => res.json())
+    if(result.status === 'ok'){
+        // generateLeaderboard(result);
+        console.log('WTF')
+        console.log(result);
+        console.log(result.array);            
+    
+        let overallRatingArray = result.array;
+        let table = document.getElementById('overall-ratings-table');
+        let str = ` <tr>
+                        <th>Name</th>
+                        <th>MP</th>
+                        <th>W</th>
+                        <th>D</th>
+                        <th>L</th>
+                        <th>/10</th>
+                    </tr>`;
+
+        // Sort in descending order straight away using the overall_rating value in the player object
+        overallRatingArray.sort(function(a, b){
+            return b.losses - a.losses;
+        });
+        console.log('NEW METHOD', overallRatingArray);
 
         for (let i = 0; i < overallRatingArray.length; i++) {
             const displayName = overallRatingArray[i].name;
