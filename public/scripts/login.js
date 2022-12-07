@@ -6,7 +6,7 @@ async function loginUser(event){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const result = await fetch('http://localhost:3000/api/login', {
+    const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/login', {
         method: 'POST',
         mode: 'cors',
         headers: {
