@@ -63,7 +63,6 @@ body {
     display: flex;
     justify-content: space-between;
     margin: 20px auto;
-    width: 45%;
     max-width: 600px;
 }
 
@@ -109,6 +108,13 @@ body {
 }
 
 /* WEEKLY RATINGS TABLE ON HOME PAGE */
+
+.title-append{
+    color: #0FFF50;
+    width: 80%;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
 
 #weekly-ratings-table{
     display: none;
