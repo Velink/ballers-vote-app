@@ -338,7 +338,7 @@ weeklyRatingButton.addEventListener('click', async () => {
             console.log('display rating:', weeklyOrderedRatingArray[i].rating);
             str = str  + `
                             <tr>
-                                <td><button class="reveal-ratings-button styled-button">${weeklyOrderedRatingArray[i].name}</button></td>
+                                <td><button class="reveal-ratings-button styled-list-button">${weeklyOrderedRatingArray[i].name}</button></td>
                                 <td>${weeklyOrderedRatingArray[i].rating}</td>
                             </tr>
                          `
