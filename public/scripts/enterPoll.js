@@ -20,7 +20,17 @@ submitButton.addEventListener('click', async () => {
             window.location.hash = enteredPassword;
             console.log(window.location.hash.substring(1));
             console.log(result);
-            beginPoll(result.result.rows);
+
+            // const params = new Proxy(new URLSearchParams(window.location.search), {
+            //     get: (searchParams, prop) => searchParams.get(prop),
+            // })
+            // let value = params.username;
+            // console.log('HUH' + value);
+
+            console.log('ayyy yoo: ' + localStorage.getItem("username"));
+            let usernameValue = localStorage.getItem("username");
+
+            beginPoll(result.result.rows, usernameValue);
         } else if(result.status === 'Error14'){
             alert('14 players have already voted this week!')
         }
@@ -34,7 +44,8 @@ submitButton.addEventListener('click', async () => {
 
 // ENTER VOTING
 
-function beginPoll(rows){
+function beginPoll(rows, username){
+    console.log('wwe have the username here: ', username)
     console.log('we have the rows here', rows);
     const main = document.getElementById('main');
 
@@ -82,10 +93,10 @@ function beginPoll(rows){
             if(rating[rating.length - 1] == '.'){
                 rating = rating.concat('0');
                 console.log('CONCAT', rating)
-                let object = { name: rows[i].name, password: passwordHash, rating: rating }
+                let object = { name: rows[i].name, password: passwordHash, rating: rating, user: username }
                 ratingObjectArray.push(object) 
             } else {
-                let object = { name: rows[i].name, password: passwordHash, rating: rating }
+                let object = { name: rows[i].name, password: passwordHash, rating: rating, user: username }
                 ratingObjectArray.push(object) 
             }
         }
@@ -327,7 +338,7 @@ weeklyRatingButton.addEventListener('click', async () => {
             console.log('display rating:', weeklyOrderedRatingArray[i].rating);
             str = str  + `
                             <tr>
-                                <td>${weeklyOrderedRatingArray[i].name}</td>
+                                <td><button class="reveal-ratings-button styled-button">${weeklyOrderedRatingArray[i].name}</button></td>
                                 <td>${weeklyOrderedRatingArray[i].rating}</td>
                             </tr>
                          `
@@ -335,10 +346,70 @@ weeklyRatingButton.addEventListener('click', async () => {
         voteNumber.textContent = `Votes: ${result.votes}`;
         motm.textContent = `MOTM: ${weeklyOrderedRatingArray[0].name}`
         table.insertAdjacentHTML('beforeend', str);
+        tuneButtons();
     } else {
         alert('There was an error with the server!')
     }
 })
+
+// BUTTON ARRAY
+function tuneButtons(){
+    let revealButtonsArray = document.getElementsByClassName('reveal-ratings-button');
+    for (let b = 0; b < revealButtonsArray.length; b++) {
+        console.log('we in this')
+        revealButtonsArray[b].addEventListener('click', async () => {
+            console.log(revealButtonsArray[b].textContent)
+            let playerName = revealButtonsArray[b].textContent;
+            revealPlayerRatings(playerName);
+        })
+    }
+}
+
+// REVEAL PLAYER RATINGS
+async function revealPlayerRatings(playerName){
+    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/reveal/weekly/${playerName}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then((res) => res.json())
+    if(result.status === 'ok'){
+        console.log(result.result.rows[0]);
+        let playerRow = result.result.rows[0];
+        let ratingArray = []
+        let userArray = []
+        for (const key in playerRow){
+            if(key.includes('rating')){
+                console.log(playerRow[key]);
+                ratingArray.push(playerRow[key])
+            } else if (key.includes('user')){
+                console.log(playerRow[key])
+                userArray.push(playerRow[key]);
+            }
+        } 
+
+        
+        let weeklyRatingsTable = document.getElementById('weekly-ratings-table');
+        weeklyRatingsTable.innerHTML = '';
+
+        let titleAppend = document.createElement('p');
+        titleAppend.textContent = `BELOW YOU CAN SEE HOW PLAYERS VOTED FOR ${playerName}`;
+        titleAppend.setAttribute('class', 'title-append')
+        weeklyRatingsTable.appendChild(titleAppend);
+
+        for (let i = 0; i < 14; i++) {
+            console.log(`${userArray[i]} : ${ratingArray[i]}`);
+            let revealValue = document.createElement('p');
+            revealValue.setAttribute('class', `p-${i}`);
+            revealValue.textContent = `${userArray[i]} : ${ratingArray[i]}`
+            weeklyRatingsTable.appendChild(revealValue);
+        }
+    } else {
+        alert('There was an error with the server!')
+    }
+}
+
+
 
 // SEE THIS OVERALL RATINGS HOME PAGE
 let overallRatingButton = document.getElementById('overall-button');
