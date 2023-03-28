@@ -16,30 +16,35 @@ async function loginUser(event){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/user-login', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify({
-            username,
-            password
-        })
-    }).then((res) => res.json())
-
-    if(result.status === 'ok'){
-        localStorage.setItem('token', result.data);
-        localStorage.setItem('username', username)
-        console.log(result.data)
-        console.log('WHY IS THIS NOT HAPPENING ANYMORE')
-        generatePollPage()
-        // Direct to enter password to vote page 
-        // CALL A FUNCTION THAT GENERATES THE poll.html PAGE 
+    try {
+        console.log('what be here: ', password)
+        const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/user-login', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        }).then((res) => res.json())
     
-    } else {
-        alert(result.error);
+        if(result.status === 'ok'){
+            localStorage.setItem('token', result.data);
+            localStorage.setItem('username', username)
+            console.log(result.data)
+            console.log('WHY IS THIS NOT HAPPENING ANYMORE')
+            generatePollPage()
+            // Direct to enter password to vote page 
+            // CALL A FUNCTION THAT GENERATES THE poll.html PAGE 
+        
+        } else {
+            alert(result.error);
+        }   
+    } catch (error) {
+        alert('SERVER CRASHED: ' + error);   
     }
 }
 
