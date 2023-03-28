@@ -94,3 +94,9 @@ body {
     padding-left: 2px;
     font-weight: bolder;
 }
+
+@media(max-width: 650px){
+    #main-registration {
+        width: 75%;
+    }
+}
