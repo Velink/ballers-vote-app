@@ -17,6 +17,7 @@ async function loginUser(event){
     const password = document.getElementById('password').value;
 
     try {
+        console.log('what be here: ', password)
         const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/user-login', {
             method: 'POST',
             mode: 'cors',
@@ -40,10 +41,10 @@ async function loginUser(event){
             // CALL A FUNCTION THAT GENERATES THE poll.html PAGE 
         
         } else {
-            alert('Please try again');
+            alert(result.error);
         }   
     } catch (error) {
-        alert(error)   
+        alert('SERVER CRASHED: ' + error);   
     }
 }
 
