@@ -25,12 +25,13 @@ async function registerUser(event){
         alert('Thank you for registering - click ok to go to the login page!')
 
         setTimeout(function () {
-            window.location.href = "https://ballers-vote-app-server.herokuapp.com/index.html"; 
-         }, 1000); //will call the function after 2 secs.
+            window.location.href = "https://ballers-edmonton.netlify.app/index.html"; 
+            }, 1000); //will call the function after 2 secs.
     } else {
         alert(result.error);
     }
 
     console.log(result);
 }
+
 
