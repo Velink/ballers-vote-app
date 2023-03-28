@@ -1,12 +1,22 @@
 const form = document.getElementById('user-login-form');
 form.addEventListener('submit', loginUser)
 
+async function fillFields(){
+    console.log('THIS IS IT BABY')
+    let userInput = document.getElementById('username');
+    userInput.value = localStorage.getItem("username");
+    let passInput = document.getElementById('password');
+    passInput.value = localStorage.getItem("password");
+}
+
+fillFields()
+
 async function loginUser(event){
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const result = await fetch('http://localhost:3000/api/user-login', {
+    const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/user-login', {
         method: 'POST',
         mode: 'cors',
         headers: {

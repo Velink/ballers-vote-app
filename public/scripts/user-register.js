@@ -7,7 +7,7 @@ async function registerUser(event){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
-    const result = await fetch('http://localhost:3000/api/user-register', {
+    const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/user-register', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,10 +20,12 @@ async function registerUser(event){
     }).then((res) => res.json())
 
     if(result.status === 'ok'){
+        localStorage.setItem('username', username);
+        localStorage.setItem('password', password);
         alert('Thank you for registering - click ok to go to the login page!')
 
         setTimeout(function () {
-            window.location.href = "http://localhost:5500/public/index.html"; 
+            window.location.href = "https://ballers-vote-app-server.herokuapp.com/index.html"; 
          }, 1000); //will call the function after 2 secs.
     } else {
         alert(result.error);
