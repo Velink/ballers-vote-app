@@ -117,7 +117,7 @@ function beginPoll(rows, username){
                 // This condition here is to make sure that we are on the last input before creating the next page, this means all input values would have been checked
                 if(x == ratingObjectArray.length -1){
                     console.log('this RAN');
-                    const result = await fetch(`http://localhost:3000/api/rate/${passwordHash}`, {
+                    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/rate/${passwordHash}`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -367,7 +367,7 @@ function tuneButtons(){
 
 // REVEAL PLAYER RATINGS
 async function revealPlayerRatings(playerName){
-    const result = await fetch(`http://localhost:3000/api/reveal/weekly/${playerName}`, {
+    const result = await fetch(`https://ballers-vote-app-server.herokuapp.com/api/reveal/weekly/${playerName}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json'
