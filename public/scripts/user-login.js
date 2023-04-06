@@ -171,3 +171,13 @@ function generatePollPage(){
 function getRand(){
     return new Date().getTime().toString() + Math.floor(Math.random()*1000000);
 }
+
+
+//Forgot Password Button 
+
+let passwordRecoveryButton = document.getElementById('forgot-password-button');
+passwordRecoveryButton.addEventListener('click', recoverPassword)
+
+function recoverPassword(){
+    console.log('hello world')
+}

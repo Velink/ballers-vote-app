@@ -52,6 +52,17 @@ body {
     margin: 30px 0px;
 }
 
+#forgot-password-button{
+    background-color: transparent;
+    border: none;
+    color: #0FFF50;
+    font-size: 12px;
+    position: absolute;
+    margin-top: 190px;
+    margin-left: 105px;
+    cursor: pointer;
+}
+
 .styled-button{
     border: none;
     background-color: black;
