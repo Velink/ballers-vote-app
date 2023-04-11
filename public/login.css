@@ -9,7 +9,7 @@
 
 
 html{
-    height: auto;
+    height: 100%;
 }
 
 body {
@@ -73,6 +73,9 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: 0.1em;
+
+    text-align: center;
+    text-decoration: none;
 }
 
 .styled-button:hover{

@@ -183,6 +183,11 @@ function recoverPassword(){
     const resetContainer = document.createElement('div');
     resetContainer.setAttribute('class', 'reset-container');
 
+    const backButton = document.createElement('a');
+    backButton.setAttribute('class', 'styled-button');
+    backButton.setAttribute('href', 'https://ballers-edmonton.netlify.app/')
+    backButton.textContent = 'Back';
+
     // Enter email field and button
     const emailLabel = document.createElement('label');
     const emailField = document.createElement('input');
@@ -198,6 +203,7 @@ function recoverPassword(){
     resetContainer.appendChild(emailLabel);
     resetContainer.appendChild(emailField);
     resetContainer.appendChild(emailSubmit);
+    resetContainer.appendChild(backButton);
     body.appendChild(resetContainer);
 
     emailSubmit.addEventListener('click', async () => {

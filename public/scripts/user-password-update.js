@@ -39,7 +39,7 @@ async function updateUserPassword(event){
         homeButton.setAttribute('id', 'user-notice-button');
         homeButton.setAttribute('class', 'styled-button');
         homeButton.addEventListener('click', () => {
-            window.location.replace('https://ballers-edmonton.netlify.app/index.html')
+            window.location.replace('https://ballers-edmonton.netlify.app/')
         })
 
         body.appendChild(userNotice);

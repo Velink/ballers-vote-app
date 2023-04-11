@@ -353,9 +353,12 @@ body {
     margin-bottom: 3px;
 }
 
-#order-wins{
-    
+/* RESET PASSWORD PAGE */
+#back-button{
+    margin: 20px auto;
 }
+
+/* MEDIA QUERIES */
 
 @media(max-width: 650px){
     .landing-page-title{
