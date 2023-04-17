@@ -123,6 +123,7 @@ function generateAdminDashboard(){
         }
 
         // generateLobbyPage();
+        // Here we need a check to occur - if password for that week already exists or not
         const response = await fetch('https://ballers-vote-app-server.herokuapp.com/api/create', options)
         .then((res) => res.json())
         if(response.status === 'ok'){
