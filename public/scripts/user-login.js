@@ -241,14 +241,5 @@ function recoverPassword(){
             alert('SERVER CRASHED: ' + error);   
         }
     })
-
-    // Remove current HTML 
-    // Generate new form that asks for email to be entered
-    // With a button submit - checks if email exists in DB - if yes? - proceed 
-    // If no - sorry this email doesn't exist 
-    // Proceed - Recovery email has been sent to your inbox
-    // Inbox email has link 
-    // webpage with enter new password confirm password - updates password stored in database 
-    // job done 
 }
 
