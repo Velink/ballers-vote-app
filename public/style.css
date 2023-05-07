@@ -112,6 +112,8 @@ body {
 
 .styled-list-button:hover{
     background-color: #0FFF50;
+    cursor: pointer;
+    color: black;
 }
 
 
