@@ -110,6 +110,10 @@ body {
     letter-spacing: 0.1em;
 }
 
+.styled-list-button:hover{
+    background-color: #0FFF50;
+}
+
 
 /* TABLE CONTAINER */
 
