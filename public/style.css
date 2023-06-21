@@ -7,11 +7,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-
-html{
-    height: auto;
-}
-
 body {
     margin: 0;
     height: 100%;
@@ -86,10 +81,14 @@ body {
 
 .styled-input{
     border: none;
-    height: 20px;
+    height: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
     outline: none;
+
+    padding-left: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 .styled-input:focus{
@@ -109,6 +108,12 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: 0.1em;
+}
+
+.styled-list-button:hover{
+    background-color: #0FFF50;
+    cursor: pointer;
+    color: black;
 }
 
 
@@ -312,6 +317,8 @@ body {
     margin-top: 10px;
     outline: none;
     border: none;
+
+    padding-left: 3px;
 }
 
 .rating-input:focus{
@@ -347,9 +354,12 @@ body {
     margin-bottom: 3px;
 }
 
-#order-wins{
-    
+/* RESET PASSWORD PAGE */
+#back-button{
+    margin: 20px auto;
 }
+
+/* MEDIA QUERIES */
 
 @media(max-width: 650px){
     .landing-page-title{
@@ -477,5 +487,45 @@ body {
     #overall-ratings-table tr td:nth-of-type(1){
         width: 65%;
     }
-      
 }
+
+
+
+/* UPDATE PASSWORD FORM STYLING */
+
+#password-reset-title{
+    text-align: center;
+    color: #fff;
+    margin: 250px auto;
+    margin-bottom: 0%;
+}
+
+#update-password-form{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    max-width: 500px;
+    margin: 100px auto;
+}
+
+.styled-label{
+    color: #fff;
+}
+
+
+#user-notice{
+    margin: 400px auto;
+    margin-bottom: 10px;
+    width: 45%;
+    min-width: 300px;
+    max-width: 500px;
+    text-align: center;
+    font-size: 24px;
+}
+
+#user-notice-button{
+    width: 300px;
+    margin: 100px auto;
+    margin-top: 10px;
+}
+

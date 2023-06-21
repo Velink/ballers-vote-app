@@ -7,11 +7,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-
-html{
-    height: auto;
-}
-
 body {
     margin: 0;
     height: 100%;
@@ -50,6 +45,18 @@ body {
     display: flex;
     flex-direction: column;
     margin: 30px 0px;
+    margin-bottom: 10px;
+}
+
+#forgot-password-button{
+    background-color: transparent;
+    border: none;
+    color: #0FFF50;
+    font-size: 12px;
+    position: absolute;
+    margin-top: 190px;
+    margin-left: 105px;
+    cursor: pointer;
 }
 
 .styled-button{
@@ -61,6 +68,9 @@ body {
     text-transform: uppercase;
     font-weight: bolder;
     letter-spacing: 0.1em;
+
+    text-align: center;
+    text-decoration: none;
 }
 
 .styled-button:hover{
@@ -72,10 +82,15 @@ body {
 
 .styled-input{
     border: none;
-    height: 20px;
+    height: 25px;
     margin-top: 10px;
     margin-bottom: 10px;
     outline: none;
+    font-weight: bolder;
+
+    padding-left: 6px;
+    padding-bottom: 3px;
+    padding-top: 3px;
 }
 
 .styled-input:focus{
@@ -93,7 +108,41 @@ body {
     color: #fff;
 }
 
+.sign-up-button a{
+    text-decoration: none;
+}
+
 #flan{
     font-weight: 700;
     color: #0FFF50;
+}
+
+/* RESET PAGE */
+
+.reset-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    margin: 15% auto;
+}
+
+#email-label-reset{
+    text-align: center;
+    font-size: 22px;
+}
+
+#notify-user{
+    margin: 30% auto;
+    text-align: center; 
+    font-size: 24px;
+    color: #fff;
+    width: 45%;
+}
+
+@media(max-width: 650px){
+    .reset-container{
+        width: 70%;
+        margin-top: 30%;
+    }
 }

@@ -17,7 +17,6 @@ async function loginUser(event){
     const password = document.getElementById('password').value;
 
     try {
-        console.log('what be here: ', password)
         const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/user-login', {
             method: 'POST',
             mode: 'cors',
@@ -34,7 +33,6 @@ async function loginUser(event){
         if(result.status === 'ok'){
             localStorage.setItem('token', result.data);
             localStorage.setItem('username', username)
-            console.log(result.data)
             console.log('WHY IS THIS NOT HAPPENING ANYMORE')
             generatePollPage()
             // Direct to enter password to vote page 
@@ -171,3 +169,77 @@ function generatePollPage(){
 function getRand(){
     return new Date().getTime().toString() + Math.floor(Math.random()*1000000);
 }
+
+
+//Forgot Password Button 
+
+let passwordRecoveryButton = document.getElementById('forgot-password-button');
+passwordRecoveryButton.addEventListener('click', recoverPassword)
+
+function recoverPassword(){
+    console.log('hello world');
+    body.innerHTML = '';
+
+    const resetContainer = document.createElement('div');
+    resetContainer.setAttribute('class', 'reset-container');
+
+    const backButton = document.createElement('a');
+    backButton.setAttribute('class', 'styled-button');
+    backButton.setAttribute('href', 'https://ballers-edmonton.netlify.app/')
+    backButton.textContent = 'Back';
+
+    // Enter email field and button
+    const emailLabel = document.createElement('label');
+    const emailField = document.createElement('input');
+    const emailSubmit = document.createElement('button');
+    emailLabel.setAttribute('class', 'styled-label');
+    emailLabel.setAttribute('id', 'email-label-reset')
+    emailField.setAttribute('class', 'styled-input');
+    emailSubmit.setAttribute('class', 'styled-button');
+
+    emailLabel.textContent = 'Please enter your email to reset your password';
+    emailSubmit.textContent = 'Reset Password';
+
+    resetContainer.appendChild(emailLabel);
+    resetContainer.appendChild(emailField);
+    resetContainer.appendChild(emailSubmit);
+    resetContainer.appendChild(backButton);
+    body.appendChild(resetContainer);
+
+    emailSubmit.addEventListener('click', async () => {
+        let userEmail = emailField.value;
+        console.log(userEmail);
+
+        try {
+            const result = await fetch('https://ballers-vote-app-server.herokuapp.com/api/check-email', {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                body: JSON.stringify({
+                    userEmail,
+                })
+            }).then((res) => res.json())
+        
+            if(result.status === 'ok'){
+                console.log('ok apparently');
+                body.innerHTML = '';
+                let notifyUser = document.createElement('p');
+                notifyUser.setAttribute('id', 'notify-user');
+                notifyUser.textContent = 'An email has been sent to your inbox with a link to reset your password!'
+                console.log(result);
+                body.appendChild(notifyUser);
+                // REMOVE HTML AND NOTIFY USER THAT AN EMAIL HAS BEEN SENT 
+                // WITH A PASSWORD RESET LINK 
+            
+            } else {
+                alert(result.error);
+            }   
+        } catch (error) {
+            alert('SERVER CRASHED: ' + error);   
+        }
+    })
+}
+
